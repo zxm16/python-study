@@ -1,0 +1,5 @@
+print('你好Python')
+print('hello world')
+print('人工智能')
+print('人生苦短，用python')
+print('我们加油吧')
