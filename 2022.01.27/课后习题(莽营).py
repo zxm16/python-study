@@ -194,3 +194,94 @@ print(name_shoes)
 #3.11
 # print(name_shoes[4])
 # 当索引错误时出现的错误
+
+
+#四章
+# 4.1
+pizzas=['培根','鸡肉','水果']
+for pizza in pizzas:
+    print(pizza)
+    #输出循环的元素
+for pizza in pizzas:
+    print(f'我喜欢{pizza}披萨')
+    #将循环的内容进行字符串拼接
+print('这些披萨我都喜欢！')
+#4.2
+name_animals=['dog','cat','rabbit']
+for name_animal in name_animals:
+    print(f'a {name_animal} would make a great pet!')
+    print('Any of these animals would make a great pet')
+#4.3
+number01=range(1,21)
+for number011 in number01:
+    print(number011)
+#随机生成20个数并实验for循环进行打印
+#4.4
+number02=range(1,1000001)
+for number021 in number02:
+    print(number021)
+#随机生成100000个数并答应
+#4.5
+number03=[1,2,3,4,5,6]
+print(min(number03))
+print(max(number03))
+print(sum(number03))
+#输出数组中最小，最大，所有元素的和
+#4.6
+number04=list(range(1,21,2))
+print(number04)
+#生成奇数的数组并打印出他们
+#4.7
+number05=list(range(3,31,3))
+for number051 in number05:
+    print(number051)
+#生成可以被3整除的数组
+#4.8
+number06=[value**3 for value in range(1,11)]
+print(number06)
+#生成一个以（1-10）的三次方的数组
+#4.9
+number07=[value1**2 for value1 in range(1,11)]
+print(number07)
+#用解析列表生成1-10立方的数组
+#4.10
+number08=number03[:3]
+for number081 in number08:
+    print(f'The first three item in the list are:{number081}')
+#取前三个元素
+number08=number03[2:4]
+for number081 in number08:
+    print(f'The middle two item in the list are:{number081}')
+#取中间的两个元素
+number08=number03[2:]
+for number081 in number08:
+    print(f'The last four item in the list are:{number081}')
+#取最后的两个元素
+# 4.11
+pizza01=pizzas[:]
+#遍历pizzas的元素并且将元素赋值给pizza01
+pizza01.append('海鲜')
+#向pizza01中添加新元素
+print(pizza01)
+for pizza011 in pizza01:
+    print(f'我朋友喜欢{pizza}披萨')
+for pizza in pizzas:
+    print(f'我喜欢{pizza}披萨')
+#4.12
+car_name=['法拉利','迈凯伦','柯尼塞格']
+car_speed=['500','700','800']
+for car_name01 in car_name:
+    print(f'这个车的名字是{car_name01}')
+for car_speed01 in car_speed:
+    print(f'这个车的速度是{car_speed01}')
+#4.13
+food=('鱼香肉丝','糖醋里脊','番茄鸡蛋')
+for food01 in food:
+    print(food01)
+    #打印每一种食物
+# food[0]='www'
+#元组不允许修改元素
+food=('宫爆鸡丁','糖醋里脊','番茄鸡蛋')
+for food01 in food:
+    print(food01)
+#修改元组元素
