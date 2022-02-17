@@ -9,8 +9,8 @@ from alien_invasion_ship import Ship
 
 class AlienInversion:
     """
-        管理游戏资源和行为的类
-        """
+    管理游戏资源和行为的类
+     """
 
     def __init__(self):
         """
@@ -25,6 +25,7 @@ class AlienInversion:
 
         self.settings = Setting()
         # 将Setting实例赋给self.settings来调用Setting
+
         self.ship = Ship(self)
         # 将Ship实例赋给self.ship来调用Ship
 
@@ -38,19 +39,64 @@ class AlienInversion:
             # 监视鼠标和鼠标事件
             self._check_event()
             # 循环开始调用_check_event()方法来执行游戏
+
             self._update_event()
             # 循环开始调用_update_event()方法来更新画面
 
+            self.ship.update()
 
     def _check_event(self):
         for event in pygame.event.get():
-             if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT:
+                # 如果事件为在pygame中按x键：
                 sys.exit()
+                # 系统退出
+
+            elif event.type == pygame.KEYDOWN:
+                # 如果事件为在pygame中按下按键时：
+                self._check_keydown_events(event)
+                # 按下指定按键使飞船一直向上下左右移动
+
+            elif event.type == pygame.KEYUP:
+                # 如果事件为在pygame中按下按键时：
+                self._check_keyup_events(event)
+                # 松开指定按键使飞船一直向上下左右移动
+
+    def _check_keydown_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            # 如果按下的是键盘右键时：
+
+            self.ship.moving_right = True
+            # 向右移动启动（即一直按下按键就会一直运动）
+
+        elif event.key == pygame.K_LEFT:
+            # 如果按下的是键盘左键时：
+
+            self.ship.moving_left = True
+            # 向左移动启动（即一直按下按键就会一直运动）
+
+        elif event.key == pygame.K_q:
+            # 如果按下的是q键的话程序退出
+            sys.exit()
+
+    def _check_keyup_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            # 如果按下的是键盘右键时：
+
+            self.ship.moving_right = False
+            # 向右移动关闭（即松开按键就会停止运动）
+
+        elif event.key == pygame.K_LEFT:
+            # 如果按下的是键盘左键时：
+
+            self.ship.moving_left = False
+            # 向左移动关闭（即松开按键就会停止运动）
 
     def _update_event(self):
         """ 更新屏幕上的图像并切换到新屏幕"""
         self.screen.fill(self.bg_color)
         # 每次循环时都重绘屏幕，调用fill()方法将本颜色充满屏幕
+
         self.ship.blitme()
         # 调用blitme将飞船绘制在屏幕上
 
@@ -60,6 +106,7 @@ class AlienInversion:
 
 if __name__ == '__main__':
     # 创建游戏实例并运行游戏
+
     ai = AlienInversion()
     ai.run_game()
 
