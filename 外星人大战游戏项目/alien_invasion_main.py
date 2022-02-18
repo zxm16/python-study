@@ -6,6 +6,8 @@ from alien_invasion_setting import Setting
 
 from alien_invasion_ship import Ship
 
+from alien_invasion_bullet import Bullet
+
 
 class AlienInversion:
     """
@@ -32,6 +34,7 @@ class AlienInversion:
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
         # 将Setting中初始化的设置通过self.screen来调用
+        self.bullet = pygame.sprite.Group()
 
     def run_game(self):
         """开始游戏主循环"""
@@ -44,6 +47,10 @@ class AlienInversion:
             # 循环开始调用_update_event()方法来更新画面
 
             self.ship.update()
+            # 运行飞船模块
+
+            self.bullet.update()
+            # 运行子弹模块
 
     def _check_event(self):
         for event in pygame.event.get():
@@ -79,6 +86,9 @@ class AlienInversion:
             # 如果按下的是q键的话程序退出
             sys.exit()
 
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
+
     def _check_keyup_events(self, event):
         if event.key == pygame.K_RIGHT:
             # 如果按下的是键盘右键时：
@@ -92,6 +102,13 @@ class AlienInversion:
             self.ship.moving_left = False
             # 向左移动关闭（即松开按键就会停止运动）
 
+    def _fire_bullet(self):
+        new_bullet = Bullet(self)
+        # 赋值来通过new_bullet来调用Bullet类
+
+        self.bullet.add(new_bullet)
+        # 将Bullet类添加到实例中
+
     def _update_event(self):
         """ 更新屏幕上的图像并切换到新屏幕"""
         self.screen.fill(self.bg_color)
@@ -99,6 +116,10 @@ class AlienInversion:
 
         self.ship.blitme()
         # 调用blitme将飞船绘制在屏幕上
+
+        for bullet in self.bullet.sprites():
+            # 使用循环来一直调用子弹
+            bullet.draw_bullet()
 
         pygame.display.flip()
         # 让最近绘制的屏幕可见 (不断更新屏幕)
