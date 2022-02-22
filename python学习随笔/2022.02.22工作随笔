@@ -1,0 +1,55 @@
+'''
+电机控制面板按键功能逻辑实现
+(实现点击一个按钮别的按钮都禁用从c#中联想到python)
+'''
+-----------------------
+main.py
+-----------------------
+主程序
+from Switch import Switch
+
+if_a_b.if_a_b01(1)
+if_a_b.if_a_b01(2)
+if_a_b.if_a_b01(3)
+..........
+------------------------
+if_a_b.py
+------------------------
+判断模块
+from if_a_b improt if_a_b
+
+class If_a_b:
+	
+
+	def if_a_b(self, a):
+		self.a = a
+		if self.a < 10:
+			b = a + 1
+		elif self.a == 10:
+			b = a - 1
+			pass
+
+		if button(self.a).changed == true:
+			Switch.switch01()
+		else:
+			Switch.switch02()
+			pass
+
+--------------------------
+改变属性模块
+switch.py
+
+class Switch:
+
+	def switch01(self):
+		for i in range(1, 10):
+			continue
+		else:
+			button i .enabled = False
+
+    def switch02(self):
+    	for i in range(1, 10):
+    		if i == self.a:
+    			continue
+    		else:
+    			button i .enbled = Turn
