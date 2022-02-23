@@ -28,3 +28,6 @@ class Setting:
 
         self.bullet_color = (60, 60, 60)
         # 设置子弹的底色
+
+        self.bullets_allowed = 3
+        # 设置在场上的子弹只有3颗
