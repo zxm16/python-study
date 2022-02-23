@@ -48,9 +48,18 @@ class AlienInversion:
 
             self.ship.update()
             # 运行飞船模块
-
-            self.bullet.update()
-            # 运行子弹模块
+            self._update_bullet()
+            # 调用更新子弹的位置
+            
+            for bullets in self.bullet.copy():
+                # 因为不能直接从bullet中删除子弹
+                # 所以遍历整个bullet将其超过边界的bullet移除
+                if bullets.rect.bottom <= 0:
+                    # 判断当子弹的边界小于0即超过边界时的操作
+                    self.bullet.remove(bullets)
+                    # 将超过边界的子弹从bullet中移除
+                print(len(self.bullet))
+                # 打印子弹还有多少
 
     def _check_event(self):
         for event in pygame.event.get():
@@ -103,11 +112,13 @@ class AlienInversion:
             # 向左移动关闭（即松开按键就会停止运动）
 
     def _fire_bullet(self):
-        new_bullet = Bullet(self)
-        # 赋值来通过new_bullet来调用Bullet类
+        if len(self.bullet) < (self.settings.bullets_allowed):
+            # 当子弹小于3颗的时候创造一颗子弹
+            new_bullet = Bullet(self)
+            # 赋值来通过new_bullet来调用Bullet类
 
-        self.bullet.add(new_bullet)
-        # 将Bullet类添加到实例中
+            self.bullet.add(new_bullet)
+            # 将Bullet类添加到实例中
 
     def _update_event(self):
         """ 更新屏幕上的图像并切换到新屏幕"""
@@ -121,8 +132,18 @@ class AlienInversion:
             # 使用循环来一直调用子弹
             bullet.draw_bullet()
 
+        print(len(self.bullet))
+
         pygame.display.flip()
         # 让最近绘制的屏幕可见 (不断更新屏幕)
+
+    def _update_bullet(self):
+        """
+        更新子弹的位置并删除子弹
+        :return:
+        """
+        self.bullet.update()
+        # 运行子弹模块
 
 
 if __name__ == '__main__':
